@@ -18,16 +18,25 @@ function readLine(line) {
 	process.exit();
 }
 
+function returnLargest(arr) {
+	return arr.reduce(reducer);
+}
+
+function reducer(a, b) {
+	return Math.max(a, b);
+}
+
 function max(arr) {
 	// write your code here
-	const max_one = Math.max(...arr);
+	const max_one = returnLargest(arr);
 	const index = arr.findIndex((num) => Number(num) === Number(max_one));
 	arr.splice(index, 1);
-	let max_two = Math.max(...arr);
-	if (max_two === -Infinity) {
+	let max_two;
+	if (arr.length === 0) {
 		max_two = 1;
+		return max_one * max_two;
 	}
-
+	max_two = returnLargest(arr);
 	return max_one * max_two;
 }
 
